@@ -1,32 +1,23 @@
 grammar SimpleCSS;
 
-stylesheet : rule* EOF # StylesheetNode;
+stylesheet : ruleSet* EOF # StylesheetRule;
 
-rule : selectors block # RuleNode;
+ruleSet : selectors LBRACE declaration* RBRACE # RuleSetRule;
 
-selectors : selector (',' selector)* # SelectorListNode;
+selectors : selector (COMMA selector)*;
 
-selector
-    : '.' ID (ID)?   # ClassSelector
-    | '#' ID (ID)?   # IdSelector
-    | ID (ID)?       # TagSelector
-    ;
+// Selector can be multiple parts (e.g. ".product-info h2")
+selector : selectorElement+; 
 
-block : '{' declaration* '}' # BlockNode;
+selectorElement : (DOT | HASH)? ID | STAR;
 
-declaration : propName ':' propValue ';' # DeclarationNode;
+declaration : propName COLON propValue SEMI? # DeclarationRule;
 
-propName : ID | ID '-' ID;
-propValue : ID | NUMBER | '#' ID | NUMBER ID | NUMBER PERCENT; 
+propName : ID | ID MINUS ID;
+propValue : (ID | HASH | NUMBER | DOT | MINUS | PERCENT)+; // Allow flexible values
 
-ID     : [a-zA-Z][a-zA-Z0-9_-]*;
+// Lexer
+ID : [a-zA-Z][a-zA-Z0-9_-]*;
 NUMBER : [0-9]+;
-WS     : [ \t\r\n]+ -> skip;
-DOT    : '.';
-HASH   : '#';
-COMMA  : ',';
-COLON  : ':';
-SEMI   : ';';
-LBRACE : '{';
-RBRACE : '}';
-PERCENT : '%'; 
+DOT: '.'; HASH: '#'; COMMA: ','; COLON: ':'; SEMI: ';'; LBRACE: '{'; RBRACE: '}'; MINUS: '-'; PERCENT: '%'; STAR: '*';
+WS : [ \t\r\n]+ -> skip;

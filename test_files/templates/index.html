@@ -1,48 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Home Page</title>
-  <link rel="stylesheet" href="../style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <div class="page">
-  <h1 class="header-title">Welcome to My Store</h1>
+    <div class="container">
+        <header id="main-header">
+            <h1 class="header-title">Product Manager</h1>
+        </header>
+        
+        <main class="page">
+            <h2>Products</h2>
+            <ul class="product-list">
+                <li class="item">
+                    <div class="product-info">
+                        <h2>Sample Product</h2>
+                        <span>$100</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="/edit/1">Edit</a>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </li>
+            </ul>
 
-  <h2>Products List</h2>
-  <ul class="product-list">
-    <li class="item">
-      <div class="product-info">
-        <h2>Laptop</h2>
-        <span>Price: $1200</span>
-      </div>
-      <div class="product-actions">
-        <a href="#" class="delete-btn">Delete</a>
-      </div>
-    </li>
-    <li class="item">
-      <div class="product-info">
-        <h2>Mouse</h2>
-        <span>Price: $25</span>
-      </div>
-      <div class="product-actions">
-        <a href="#" class="delete-btn">Delete</a>
-      </div>
-    </li>
-    <li class="item">
-      <div class="product-info">
-        <h2>Keyboard</h2>
-        <span>Price: $75</span>
-      </div>
-      <div class="product-actions">
-        <a href="#" class="delete-btn">Delete</a>
-      </div>
-    </li>
-  </ul>
-
-  <a href="#" class="add-btn">+ Add New Product</a>
-  <footer>Copyright 2026</footer>
-  </div>
+            <div class="add-btn">
+                <a href="/add">Add New Product</a>
+            </div>
+        </main>
+    </div>
 </body>
- </html>
+</html>

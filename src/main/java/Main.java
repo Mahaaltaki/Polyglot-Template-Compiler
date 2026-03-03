@@ -11,13 +11,16 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String[] args) {
         try {
-            System.out.println(">>> STARTING COMPILER PROJECT <<<\n");
+            System.out.println(">>> STARTING COMPLETE COMPILER PROJECT <<<\n");
 
             processPython("test_files/app.py");
-
+            System.out.println("-------------------------------------");
             processCSS("test_files/style.css");
-
+            System.out.println("-------------------------------------");
             processHTML("test_files/templates/index.html");
+            System.out.println("-------------------------------------");
+            processHTML("test_files/templates/add_product.html");
+            System.out.println("-------------------------------------");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,7 +37,7 @@ public class Main {
         PythonASTVisitor astVisitor = new PythonASTVisitor();
         ASTNode root = astVisitor.visit(tree);
         System.out.println("\n--- PYTHON AST ---");
-        System.out.println(root.printTree("", true));
+        if(root != null) System.out.println(root.printTree("", true));
 
         PythonSymbolTableVisitor symVisitor = new PythonSymbolTableVisitor();
         symVisitor.visit(tree);
@@ -48,6 +51,11 @@ public class Main {
         SimpleCSSParser parser = new SimpleCSSParser(tokens);
         ParseTree tree = parser.stylesheet();
 
+        CssASTVisitor astVisitor = new CssASTVisitor();
+        ASTNode root = astVisitor.visit(tree);
+        System.out.println("\n--- CSS AST ---");
+        if(root != null) System.out.println(root.printTree("", true));
+
         CssSymbolTableVisitor cssVisitor = new CssSymbolTableVisitor();
         cssVisitor.visit(tree);
         cssVisitor.getSymbolTable().printTable();
@@ -59,6 +67,10 @@ public class Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         TemplateHTMLParser parser = new TemplateHTMLParser(tokens);
         ParseTree tree = parser.htmlDocument();
+        HtmlASTVisitor astVisitor = new HtmlASTVisitor();
+        ASTNode root = astVisitor.visit(tree);
+        System.out.println("\n--- HTML AST ---");
+        if(root != null) System.out.println(root.printTree("", true));
 
         HtmlSymbolTableVisitor htmlVisitor = new HtmlSymbolTableVisitor();
         htmlVisitor.visit(tree);

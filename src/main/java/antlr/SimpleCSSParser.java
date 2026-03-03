@@ -1,4 +1,4 @@
-// Generated from SimpleCSSParser.g4 by ANTLR 4.13.1
+// Generated from src/main/antlr4/SimpleCSS.g4 by ANTLR 4.13.1
 package antlr;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -17,30 +17,30 @@ public class SimpleCSSParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		ID=1, NUMBER=2, WS=3, DOT=4, HASH=5, COMMA=6, COLON=7, SEMI=8, LBRACE=9, 
-		RBRACE=10, PERCENT=11, LPAREN=12, RPAREN=13, DASH=14;
+		ID=1, NUMBER=2, DOT=3, HASH=4, COMMA=5, COLON=6, SEMI=7, LBRACE=8, RBRACE=9, 
+		MINUS=10, PERCENT=11, STAR=12, WS=13;
 	public static final int
-		RULE_stylesheet = 0, RULE_rule = 1, RULE_selectors = 2, RULE_selector = 3, 
-		RULE_block = 4, RULE_declaration = 5, RULE_propName = 6, RULE_propValue = 7;
+		RULE_stylesheet = 0, RULE_ruleSet = 1, RULE_selectors = 2, RULE_selector = 3, 
+		RULE_selectorElement = 4, RULE_declaration = 5, RULE_propName = 6, RULE_propValue = 7;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"stylesheet", "rule", "selectors", "selector", "block", "declaration", 
-			"propName", "propValue"
+			"stylesheet", "ruleSet", "selectors", "selector", "selectorElement", 
+			"declaration", "propName", "propValue"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, null, null, "'.'", "'#'", "','", "':'", "';'", "'{'", "'}'", 
-			"'%'", "'('", "')'", "'-'"
+			null, null, null, "'.'", "'#'", "','", "':'", "';'", "'{'", "'}'", "'-'", 
+			"'%'", "'*'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "ID", "NUMBER", "WS", "DOT", "HASH", "COMMA", "COLON", "SEMI", 
-			"LBRACE", "RBRACE", "PERCENT", "LPAREN", "RPAREN", "DASH"
+			null, "ID", "NUMBER", "DOT", "HASH", "COMMA", "COLON", "SEMI", "LBRACE", 
+			"RBRACE", "MINUS", "PERCENT", "STAR", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -78,7 +78,7 @@ public class SimpleCSSParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "SimpleCSSParser.g4"; }
+	public String getGrammarFileName() { return "SimpleCSS.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -107,26 +107,18 @@ public class SimpleCSSParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class StylesheetNodeContext extends StylesheetContext {
+	public static class StylesheetRuleContext extends StylesheetContext {
 		public TerminalNode EOF() { return getToken(SimpleCSSParser.EOF, 0); }
-		public List<RuleContext> rule_() {
-			return getRuleContexts(RuleContext.class);
+		public List<RuleSetContext> ruleSet() {
+			return getRuleContexts(RuleSetContext.class);
 		}
-		public RuleContext rule_(int i) {
-			return getRuleContext(RuleContext.class,i);
+		public RuleSetContext ruleSet(int i) {
+			return getRuleContext(RuleSetContext.class,i);
 		}
-		public StylesheetNodeContext(StylesheetContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterStylesheetNode(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitStylesheetNode(this);
-		}
+		public StylesheetRuleContext(StylesheetContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitStylesheetNode(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitStylesheetRule(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -136,17 +128,17 @@ public class SimpleCSSParser extends Parser {
 		enterRule(_localctx, 0, RULE_stylesheet);
 		int _la;
 		try {
-			_localctx = new StylesheetNodeContext(_localctx);
+			_localctx = new StylesheetRuleContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(19);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 50L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 4122L) != 0)) {
 				{
 				{
 				setState(16);
-				rule_();
+				ruleSet();
 				}
 				}
 				setState(21);
@@ -169,52 +161,66 @@ public class SimpleCSSParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class RuleContext extends ParserRuleContext {
-		public RuleContext(ParserRuleContext parent, int invokingState) {
+	public static class RuleSetContext extends ParserRuleContext {
+		public RuleSetContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_rule; }
+		@Override public int getRuleIndex() { return RULE_ruleSet; }
 	 
-		public RuleContext() { }
-		public void copyFrom(RuleContext ctx) {
+		public RuleSetContext() { }
+		public void copyFrom(RuleSetContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class RuleNodeContext extends RuleContext {
+	public static class RuleSetRuleContext extends RuleSetContext {
 		public SelectorsContext selectors() {
 			return getRuleContext(SelectorsContext.class,0);
 		}
-		public BlockContext block() {
-			return getRuleContext(BlockContext.class,0);
+		public TerminalNode LBRACE() { return getToken(SimpleCSSParser.LBRACE, 0); }
+		public TerminalNode RBRACE() { return getToken(SimpleCSSParser.RBRACE, 0); }
+		public List<DeclarationContext> declaration() {
+			return getRuleContexts(DeclarationContext.class);
 		}
-		public RuleNodeContext(RuleContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterRuleNode(this);
+		public DeclarationContext declaration(int i) {
+			return getRuleContext(DeclarationContext.class,i);
 		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitRuleNode(this);
-		}
+		public RuleSetRuleContext(RuleSetContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitRuleNode(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitRuleSetRule(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final RuleContext rule_() throws RecognitionException {
-		RuleContext _localctx = new RuleContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_rule);
+	public final RuleSetContext ruleSet() throws RecognitionException {
+		RuleSetContext _localctx = new RuleSetContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_ruleSet);
+		int _la;
 		try {
-			_localctx = new RuleNodeContext(_localctx);
+			_localctx = new RuleSetRuleContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(24);
 			selectors();
 			setState(25);
-			block();
+			match(LBRACE);
+			setState(29);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==ID) {
+				{
+				{
+				setState(26);
+				declaration();
+				}
+				}
+				setState(31);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(32);
+			match(RBRACE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -230,18 +236,6 @@ public class SimpleCSSParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class SelectorsContext extends ParserRuleContext {
-		public SelectorsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_selectors; }
-	 
-		public SelectorsContext() { }
-		public void copyFrom(SelectorsContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class SelectorListNodeContext extends SelectorsContext {
 		public List<SelectorContext> selector() {
 			return getRuleContexts(SelectorContext.class);
 		}
@@ -252,18 +246,13 @@ public class SimpleCSSParser extends Parser {
 		public TerminalNode COMMA(int i) {
 			return getToken(SimpleCSSParser.COMMA, i);
 		}
-		public SelectorListNodeContext(SelectorsContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterSelectorListNode(this);
+		public SelectorsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
 		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitSelectorListNode(this);
-		}
+		@Override public int getRuleIndex() { return RULE_selectors; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitSelectorListNode(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitSelectors(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -273,24 +262,23 @@ public class SimpleCSSParser extends Parser {
 		enterRule(_localctx, 4, RULE_selectors);
 		int _la;
 		try {
-			_localctx = new SelectorListNodeContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(27);
+			setState(34);
 			selector();
-			setState(32);
+			setState(39);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(28);
+				setState(35);
 				match(COMMA);
-				setState(29);
+				setState(36);
 				selector();
 				}
 				}
-				setState(34);
+				setState(41);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -309,90 +297,19 @@ public class SimpleCSSParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class SelectorContext extends ParserRuleContext {
+		public List<SelectorElementContext> selectorElement() {
+			return getRuleContexts(SelectorElementContext.class);
+		}
+		public SelectorElementContext selectorElement(int i) {
+			return getRuleContext(SelectorElementContext.class,i);
+		}
 		public SelectorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_selector; }
-	 
-		public SelectorContext() { }
-		public void copyFrom(SelectorContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class IdSelectorContext extends SelectorContext {
-		public TerminalNode HASH() { return getToken(SimpleCSSParser.HASH, 0); }
-		public List<TerminalNode> ID() { return getTokens(SimpleCSSParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(SimpleCSSParser.ID, i);
-		}
-		public List<TerminalNode> COLON() { return getTokens(SimpleCSSParser.COLON); }
-		public TerminalNode COLON(int i) {
-			return getToken(SimpleCSSParser.COLON, i);
-		}
-		public IdSelectorContext(SelectorContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterIdSelector(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitIdSelector(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitIdSelector(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class ClassSelectorContext extends SelectorContext {
-		public TerminalNode DOT() { return getToken(SimpleCSSParser.DOT, 0); }
-		public List<TerminalNode> ID() { return getTokens(SimpleCSSParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(SimpleCSSParser.ID, i);
-		}
-		public List<TerminalNode> COLON() { return getTokens(SimpleCSSParser.COLON); }
-		public TerminalNode COLON(int i) {
-			return getToken(SimpleCSSParser.COLON, i);
-		}
-		public ClassSelectorContext(SelectorContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterClassSelector(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitClassSelector(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitClassSelector(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class TagSelectorContext extends SelectorContext {
-		public List<TerminalNode> ID() { return getTokens(SimpleCSSParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(SimpleCSSParser.ID, i);
-		}
-		public List<TerminalNode> COLON() { return getTokens(SimpleCSSParser.COLON); }
-		public TerminalNode COLON(int i) {
-			return getToken(SimpleCSSParser.COLON, i);
-		}
-		public TagSelectorContext(SelectorContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterTagSelector(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitTagSelector(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitTagSelector(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitSelector(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -402,117 +319,22 @@ public class SimpleCSSParser extends Parser {
 		enterRule(_localctx, 6, RULE_selector);
 		int _la;
 		try {
-			setState(70);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(43); 
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case DOT:
-				_localctx = new ClassSelectorContext(_localctx);
-				enterOuterAlt(_localctx, 1);
+			_la = _input.LA(1);
+			do {
 				{
-				setState(35);
-				match(DOT);
-				setState(36);
-				match(ID);
-				setState(38);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la==ID) {
-					{
-					setState(37);
-					match(ID);
-					}
-				}
-
-				setState(44);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while (_la==COLON) {
-					{
-					{
-					setState(40);
-					match(COLON);
-					setState(41);
-					match(ID);
-					}
-					}
-					setState(46);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				}
-				break;
-			case HASH:
-				_localctx = new IdSelectorContext(_localctx);
-				enterOuterAlt(_localctx, 2);
 				{
-				setState(47);
-				match(HASH);
-				setState(48);
-				match(ID);
-				setState(50);
+				setState(42);
+				selectorElement();
+				}
+				}
+				setState(45); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==ID) {
-					{
-					setState(49);
-					match(ID);
-					}
-				}
-
-				setState(56);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while (_la==COLON) {
-					{
-					{
-					setState(52);
-					match(COLON);
-					setState(53);
-					match(ID);
-					}
-					}
-					setState(58);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				}
-				break;
-			case ID:
-				_localctx = new TagSelectorContext(_localctx);
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(59);
-				match(ID);
-				setState(61);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la==ID) {
-					{
-					setState(60);
-					match(ID);
-					}
-				}
-
-				setState(67);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while (_la==COLON) {
-					{
-					{
-					setState(63);
-					match(COLON);
-					setState(64);
-					match(ID);
-					}
-					}
-					setState(69);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 4122L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -527,69 +349,66 @@ public class SimpleCSSParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class BlockContext extends ParserRuleContext {
-		public BlockContext(ParserRuleContext parent, int invokingState) {
+	public static class SelectorElementContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(SimpleCSSParser.ID, 0); }
+		public TerminalNode DOT() { return getToken(SimpleCSSParser.DOT, 0); }
+		public TerminalNode HASH() { return getToken(SimpleCSSParser.HASH, 0); }
+		public TerminalNode STAR() { return getToken(SimpleCSSParser.STAR, 0); }
+		public SelectorElementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_block; }
-	 
-		public BlockContext() { }
-		public void copyFrom(BlockContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class BlockNodeContext extends BlockContext {
-		public TerminalNode LBRACE() { return getToken(SimpleCSSParser.LBRACE, 0); }
-		public TerminalNode RBRACE() { return getToken(SimpleCSSParser.RBRACE, 0); }
-		public List<DeclarationContext> declaration() {
-			return getRuleContexts(DeclarationContext.class);
-		}
-		public DeclarationContext declaration(int i) {
-			return getRuleContext(DeclarationContext.class,i);
-		}
-		public BlockNodeContext(BlockContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterBlockNode(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitBlockNode(this);
-		}
+		@Override public int getRuleIndex() { return RULE_selectorElement; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitBlockNode(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitSelectorElement(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final BlockContext block() throws RecognitionException {
-		BlockContext _localctx = new BlockContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_block);
+	public final SelectorElementContext selectorElement() throws RecognitionException {
+		SelectorElementContext _localctx = new SelectorElementContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_selectorElement);
 		int _la;
 		try {
-			_localctx = new BlockNodeContext(_localctx);
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(72);
-			match(LBRACE);
-			setState(76);
+			setState(52);
 			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==ID) {
+			switch (_input.LA(1)) {
+			case ID:
+			case DOT:
+			case HASH:
+				enterOuterAlt(_localctx, 1);
 				{
-				{
-				setState(73);
-				declaration();
-				}
-				}
-				setState(78);
+				setState(48);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			}
-			setState(79);
-			match(RBRACE);
+				if (_la==DOT || _la==HASH) {
+					{
+					setState(47);
+					_la = _input.LA(1);
+					if ( !(_la==DOT || _la==HASH) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+				}
+
+				setState(50);
+				match(ID);
+				}
+				break;
+			case STAR:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(51);
+				match(STAR);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -616,7 +435,7 @@ public class SimpleCSSParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class DeclarationNodeContext extends DeclarationContext {
+	public static class DeclarationRuleContext extends DeclarationContext {
 		public PropNameContext propName() {
 			return getRuleContext(PropNameContext.class,0);
 		}
@@ -625,18 +444,10 @@ public class SimpleCSSParser extends Parser {
 			return getRuleContext(PropValueContext.class,0);
 		}
 		public TerminalNode SEMI() { return getToken(SimpleCSSParser.SEMI, 0); }
-		public DeclarationNodeContext(DeclarationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterDeclarationNode(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitDeclarationNode(this);
-		}
+		public DeclarationRuleContext(DeclarationContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitDeclarationNode(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitDeclarationRule(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -644,18 +455,27 @@ public class SimpleCSSParser extends Parser {
 	public final DeclarationContext declaration() throws RecognitionException {
 		DeclarationContext _localctx = new DeclarationContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_declaration);
+		int _la;
 		try {
-			_localctx = new DeclarationNodeContext(_localctx);
+			_localctx = new DeclarationRuleContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81);
+			setState(54);
 			propName();
-			setState(82);
+			setState(55);
 			match(COLON);
-			setState(83);
+			setState(56);
 			propValue();
-			setState(84);
-			match(SEMI);
+			setState(58);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==SEMI) {
+				{
+				setState(57);
+				match(SEMI);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -675,22 +495,14 @@ public class SimpleCSSParser extends Parser {
 		public TerminalNode ID(int i) {
 			return getToken(SimpleCSSParser.ID, i);
 		}
-		public TerminalNode DASH() { return getToken(SimpleCSSParser.DASH, 0); }
+		public TerminalNode MINUS() { return getToken(SimpleCSSParser.MINUS, 0); }
 		public PropNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_propName; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterPropName(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitPropName(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitPropName(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitPropName(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -699,24 +511,24 @@ public class SimpleCSSParser extends Parser {
 		PropNameContext _localctx = new PropNameContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_propName);
 		try {
-			setState(90);
+			setState(64);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(86);
+				setState(60);
 				match(ID);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(87);
+				setState(61);
 				match(ID);
-				setState(88);
-				match(DASH);
-				setState(89);
+				setState(62);
+				match(MINUS);
+				setState(63);
 				match(ID);
 				}
 				break;
@@ -735,34 +547,37 @@ public class SimpleCSSParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class PropValueContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(SimpleCSSParser.ID, 0); }
+		public List<TerminalNode> ID() { return getTokens(SimpleCSSParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(SimpleCSSParser.ID, i);
+		}
+		public List<TerminalNode> HASH() { return getTokens(SimpleCSSParser.HASH); }
+		public TerminalNode HASH(int i) {
+			return getToken(SimpleCSSParser.HASH, i);
+		}
 		public List<TerminalNode> NUMBER() { return getTokens(SimpleCSSParser.NUMBER); }
 		public TerminalNode NUMBER(int i) {
 			return getToken(SimpleCSSParser.NUMBER, i);
 		}
-		public TerminalNode HASH() { return getToken(SimpleCSSParser.HASH, 0); }
-		public TerminalNode PERCENT() { return getToken(SimpleCSSParser.PERCENT, 0); }
-		public TerminalNode LPAREN() { return getToken(SimpleCSSParser.LPAREN, 0); }
-		public TerminalNode RPAREN() { return getToken(SimpleCSSParser.RPAREN, 0); }
-		public List<TerminalNode> COMMA() { return getTokens(SimpleCSSParser.COMMA); }
-		public TerminalNode COMMA(int i) {
-			return getToken(SimpleCSSParser.COMMA, i);
+		public List<TerminalNode> DOT() { return getTokens(SimpleCSSParser.DOT); }
+		public TerminalNode DOT(int i) {
+			return getToken(SimpleCSSParser.DOT, i);
+		}
+		public List<TerminalNode> MINUS() { return getTokens(SimpleCSSParser.MINUS); }
+		public TerminalNode MINUS(int i) {
+			return getToken(SimpleCSSParser.MINUS, i);
+		}
+		public List<TerminalNode> PERCENT() { return getTokens(SimpleCSSParser.PERCENT); }
+		public TerminalNode PERCENT(int i) {
+			return getToken(SimpleCSSParser.PERCENT, i);
 		}
 		public PropValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_propValue; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).enterPropValue(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleCSSParserListener ) ((SimpleCSSParserListener)listener).exitPropValue(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SimpleCSSParserVisitor ) return ((SimpleCSSParserVisitor<? extends T>)visitor).visitPropValue(this);
+			if ( visitor instanceof SimpleCSSVisitor ) return ((SimpleCSSVisitor<? extends T>)visitor).visitPropValue(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -772,95 +587,37 @@ public class SimpleCSSParser extends Parser {
 		enterRule(_localctx, 14, RULE_propValue);
 		int _la;
 		try {
-			setState(113);
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(67); 
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(92);
-				match(ID);
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(93);
-				match(NUMBER);
-				}
-				break;
-			case 3:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(94);
-				match(HASH);
-				setState(95);
-				_la = _input.LA(1);
-				if ( !(_la==ID || _la==NUMBER) ) {
-				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
-				}
-				break;
-			case 4:
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(96);
-				match(NUMBER);
-				setState(97);
-				match(ID);
-				}
-				break;
-			case 5:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(98);
-				match(NUMBER);
-				setState(99);
-				match(PERCENT);
-				}
-				break;
-			case 6:
-				enterOuterAlt(_localctx, 6);
-				{
-				setState(100);
-				match(ID);
-				setState(101);
-				match(LPAREN);
-				setState(110);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la==NUMBER) {
+			_alt = 1;
+			do {
+				switch (_alt) {
+				case 1:
 					{
-					setState(102);
-					match(NUMBER);
-					setState(107);
-					_errHandler.sync(this);
+					{
+					setState(66);
 					_la = _input.LA(1);
-					while (_la==COMMA) {
-						{
-						{
-						setState(103);
-						match(COMMA);
-						setState(104);
-						match(NUMBER);
-						}
-						}
-						setState(109);
-						_errHandler.sync(this);
-						_la = _input.LA(1);
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 3102L) != 0)) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
 					}
 					}
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
-
-				setState(112);
-				match(RPAREN);
-				}
-				break;
+				setState(69); 
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
+			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
 		catch (RecognitionException re) {
@@ -875,75 +632,49 @@ public class SimpleCSSParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u000et\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\rH\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0001"+
 		"\u0000\u0005\u0000\u0012\b\u0000\n\u0000\f\u0000\u0015\t\u0000\u0001\u0000"+
-		"\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0002\u0001\u0002"+
-		"\u0001\u0002\u0005\u0002\u001f\b\u0002\n\u0002\f\u0002\"\t\u0002\u0001"+
-		"\u0003\u0001\u0003\u0001\u0003\u0003\u0003\'\b\u0003\u0001\u0003\u0001"+
-		"\u0003\u0005\u0003+\b\u0003\n\u0003\f\u0003.\t\u0003\u0001\u0003\u0001"+
-		"\u0003\u0001\u0003\u0003\u00033\b\u0003\u0001\u0003\u0001\u0003\u0005"+
-		"\u00037\b\u0003\n\u0003\f\u0003:\t\u0003\u0001\u0003\u0001\u0003\u0003"+
-		"\u0003>\b\u0003\u0001\u0003\u0001\u0003\u0005\u0003B\b\u0003\n\u0003\f"+
-		"\u0003E\t\u0003\u0003\u0003G\b\u0003\u0001\u0004\u0001\u0004\u0005\u0004"+
-		"K\b\u0004\n\u0004\f\u0004N\t\u0004\u0001\u0004\u0001\u0004\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006"+
-		"\u0001\u0006\u0001\u0006\u0003\u0006[\b\u0006\u0001\u0007\u0001\u0007"+
-		"\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007"+
-		"\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0005\u0007"+
-		"j\b\u0007\n\u0007\f\u0007m\t\u0007\u0003\u0007o\b\u0007\u0001\u0007\u0003"+
-		"\u0007r\b\u0007\u0001\u0007\u0000\u0000\b\u0000\u0002\u0004\u0006\b\n"+
-		"\f\u000e\u0000\u0001\u0001\u0000\u0001\u0002~\u0000\u0013\u0001\u0000"+
-		"\u0000\u0000\u0002\u0018\u0001\u0000\u0000\u0000\u0004\u001b\u0001\u0000"+
-		"\u0000\u0000\u0006F\u0001\u0000\u0000\u0000\bH\u0001\u0000\u0000\u0000"+
-		"\nQ\u0001\u0000\u0000\u0000\fZ\u0001\u0000\u0000\u0000\u000eq\u0001\u0000"+
-		"\u0000\u0000\u0010\u0012\u0003\u0002\u0001\u0000\u0011\u0010\u0001\u0000"+
-		"\u0000\u0000\u0012\u0015\u0001\u0000\u0000\u0000\u0013\u0011\u0001\u0000"+
-		"\u0000\u0000\u0013\u0014\u0001\u0000\u0000\u0000\u0014\u0016\u0001\u0000"+
-		"\u0000\u0000\u0015\u0013\u0001\u0000\u0000\u0000\u0016\u0017\u0005\u0000"+
-		"\u0000\u0001\u0017\u0001\u0001\u0000\u0000\u0000\u0018\u0019\u0003\u0004"+
-		"\u0002\u0000\u0019\u001a\u0003\b\u0004\u0000\u001a\u0003\u0001\u0000\u0000"+
-		"\u0000\u001b \u0003\u0006\u0003\u0000\u001c\u001d\u0005\u0006\u0000\u0000"+
-		"\u001d\u001f\u0003\u0006\u0003\u0000\u001e\u001c\u0001\u0000\u0000\u0000"+
-		"\u001f\"\u0001\u0000\u0000\u0000 \u001e\u0001\u0000\u0000\u0000 !\u0001"+
-		"\u0000\u0000\u0000!\u0005\u0001\u0000\u0000\u0000\" \u0001\u0000\u0000"+
-		"\u0000#$\u0005\u0004\u0000\u0000$&\u0005\u0001\u0000\u0000%\'\u0005\u0001"+
-		"\u0000\u0000&%\u0001\u0000\u0000\u0000&\'\u0001\u0000\u0000\u0000\',\u0001"+
-		"\u0000\u0000\u0000()\u0005\u0007\u0000\u0000)+\u0005\u0001\u0000\u0000"+
-		"*(\u0001\u0000\u0000\u0000+.\u0001\u0000\u0000\u0000,*\u0001\u0000\u0000"+
-		"\u0000,-\u0001\u0000\u0000\u0000-G\u0001\u0000\u0000\u0000.,\u0001\u0000"+
-		"\u0000\u0000/0\u0005\u0005\u0000\u000002\u0005\u0001\u0000\u000013\u0005"+
-		"\u0001\u0000\u000021\u0001\u0000\u0000\u000023\u0001\u0000\u0000\u0000"+
-		"38\u0001\u0000\u0000\u000045\u0005\u0007\u0000\u000057\u0005\u0001\u0000"+
-		"\u000064\u0001\u0000\u0000\u00007:\u0001\u0000\u0000\u000086\u0001\u0000"+
-		"\u0000\u000089\u0001\u0000\u0000\u00009G\u0001\u0000\u0000\u0000:8\u0001"+
-		"\u0000\u0000\u0000;=\u0005\u0001\u0000\u0000<>\u0005\u0001\u0000\u0000"+
-		"=<\u0001\u0000\u0000\u0000=>\u0001\u0000\u0000\u0000>C\u0001\u0000\u0000"+
-		"\u0000?@\u0005\u0007\u0000\u0000@B\u0005\u0001\u0000\u0000A?\u0001\u0000"+
-		"\u0000\u0000BE\u0001\u0000\u0000\u0000CA\u0001\u0000\u0000\u0000CD\u0001"+
-		"\u0000\u0000\u0000DG\u0001\u0000\u0000\u0000EC\u0001\u0000\u0000\u0000"+
-		"F#\u0001\u0000\u0000\u0000F/\u0001\u0000\u0000\u0000F;\u0001\u0000\u0000"+
-		"\u0000G\u0007\u0001\u0000\u0000\u0000HL\u0005\t\u0000\u0000IK\u0003\n"+
-		"\u0005\u0000JI\u0001\u0000\u0000\u0000KN\u0001\u0000\u0000\u0000LJ\u0001"+
-		"\u0000\u0000\u0000LM\u0001\u0000\u0000\u0000MO\u0001\u0000\u0000\u0000"+
-		"NL\u0001\u0000\u0000\u0000OP\u0005\n\u0000\u0000P\t\u0001\u0000\u0000"+
-		"\u0000QR\u0003\f\u0006\u0000RS\u0005\u0007\u0000\u0000ST\u0003\u000e\u0007"+
-		"\u0000TU\u0005\b\u0000\u0000U\u000b\u0001\u0000\u0000\u0000V[\u0005\u0001"+
-		"\u0000\u0000WX\u0005\u0001\u0000\u0000XY\u0005\u000e\u0000\u0000Y[\u0005"+
-		"\u0001\u0000\u0000ZV\u0001\u0000\u0000\u0000ZW\u0001\u0000\u0000\u0000"+
-		"[\r\u0001\u0000\u0000\u0000\\r\u0005\u0001\u0000\u0000]r\u0005\u0002\u0000"+
-		"\u0000^_\u0005\u0005\u0000\u0000_r\u0007\u0000\u0000\u0000`a\u0005\u0002"+
-		"\u0000\u0000ar\u0005\u0001\u0000\u0000bc\u0005\u0002\u0000\u0000cr\u0005"+
-		"\u000b\u0000\u0000de\u0005\u0001\u0000\u0000en\u0005\f\u0000\u0000fk\u0005"+
-		"\u0002\u0000\u0000gh\u0005\u0006\u0000\u0000hj\u0005\u0002\u0000\u0000"+
-		"ig\u0001\u0000\u0000\u0000jm\u0001\u0000\u0000\u0000ki\u0001\u0000\u0000"+
-		"\u0000kl\u0001\u0000\u0000\u0000lo\u0001\u0000\u0000\u0000mk\u0001\u0000"+
-		"\u0000\u0000nf\u0001\u0000\u0000\u0000no\u0001\u0000\u0000\u0000op\u0001"+
-		"\u0000\u0000\u0000pr\u0005\r\u0000\u0000q\\\u0001\u0000\u0000\u0000q]"+
-		"\u0001\u0000\u0000\u0000q^\u0001\u0000\u0000\u0000q`\u0001\u0000\u0000"+
-		"\u0000qb\u0001\u0000\u0000\u0000qd\u0001\u0000\u0000\u0000r\u000f\u0001"+
-		"\u0000\u0000\u0000\u000e\u0013 &,28=CFLZknq";
+		"\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0005\u0001\u001c\b\u0001"+
+		"\n\u0001\f\u0001\u001f\t\u0001\u0001\u0001\u0001\u0001\u0001\u0002\u0001"+
+		"\u0002\u0001\u0002\u0005\u0002&\b\u0002\n\u0002\f\u0002)\t\u0002\u0001"+
+		"\u0003\u0004\u0003,\b\u0003\u000b\u0003\f\u0003-\u0001\u0004\u0003\u0004"+
+		"1\b\u0004\u0001\u0004\u0001\u0004\u0003\u00045\b\u0004\u0001\u0005\u0001"+
+		"\u0005\u0001\u0005\u0001\u0005\u0003\u0005;\b\u0005\u0001\u0006\u0001"+
+		"\u0006\u0001\u0006\u0001\u0006\u0003\u0006A\b\u0006\u0001\u0007\u0004"+
+		"\u0007D\b\u0007\u000b\u0007\f\u0007E\u0001\u0007\u0000\u0000\b\u0000\u0002"+
+		"\u0004\u0006\b\n\f\u000e\u0000\u0002\u0001\u0000\u0003\u0004\u0002\u0000"+
+		"\u0001\u0004\n\u000bH\u0000\u0013\u0001\u0000\u0000\u0000\u0002\u0018"+
+		"\u0001\u0000\u0000\u0000\u0004\"\u0001\u0000\u0000\u0000\u0006+\u0001"+
+		"\u0000\u0000\u0000\b4\u0001\u0000\u0000\u0000\n6\u0001\u0000\u0000\u0000"+
+		"\f@\u0001\u0000\u0000\u0000\u000eC\u0001\u0000\u0000\u0000\u0010\u0012"+
+		"\u0003\u0002\u0001\u0000\u0011\u0010\u0001\u0000\u0000\u0000\u0012\u0015"+
+		"\u0001\u0000\u0000\u0000\u0013\u0011\u0001\u0000\u0000\u0000\u0013\u0014"+
+		"\u0001\u0000\u0000\u0000\u0014\u0016\u0001\u0000\u0000\u0000\u0015\u0013"+
+		"\u0001\u0000\u0000\u0000\u0016\u0017\u0005\u0000\u0000\u0001\u0017\u0001"+
+		"\u0001\u0000\u0000\u0000\u0018\u0019\u0003\u0004\u0002\u0000\u0019\u001d"+
+		"\u0005\b\u0000\u0000\u001a\u001c\u0003\n\u0005\u0000\u001b\u001a\u0001"+
+		"\u0000\u0000\u0000\u001c\u001f\u0001\u0000\u0000\u0000\u001d\u001b\u0001"+
+		"\u0000\u0000\u0000\u001d\u001e\u0001\u0000\u0000\u0000\u001e \u0001\u0000"+
+		"\u0000\u0000\u001f\u001d\u0001\u0000\u0000\u0000 !\u0005\t\u0000\u0000"+
+		"!\u0003\u0001\u0000\u0000\u0000\"\'\u0003\u0006\u0003\u0000#$\u0005\u0005"+
+		"\u0000\u0000$&\u0003\u0006\u0003\u0000%#\u0001\u0000\u0000\u0000&)\u0001"+
+		"\u0000\u0000\u0000\'%\u0001\u0000\u0000\u0000\'(\u0001\u0000\u0000\u0000"+
+		"(\u0005\u0001\u0000\u0000\u0000)\'\u0001\u0000\u0000\u0000*,\u0003\b\u0004"+
+		"\u0000+*\u0001\u0000\u0000\u0000,-\u0001\u0000\u0000\u0000-+\u0001\u0000"+
+		"\u0000\u0000-.\u0001\u0000\u0000\u0000.\u0007\u0001\u0000\u0000\u0000"+
+		"/1\u0007\u0000\u0000\u00000/\u0001\u0000\u0000\u000001\u0001\u0000\u0000"+
+		"\u000012\u0001\u0000\u0000\u000025\u0005\u0001\u0000\u000035\u0005\f\u0000"+
+		"\u000040\u0001\u0000\u0000\u000043\u0001\u0000\u0000\u00005\t\u0001\u0000"+
+		"\u0000\u000067\u0003\f\u0006\u000078\u0005\u0006\u0000\u00008:\u0003\u000e"+
+		"\u0007\u00009;\u0005\u0007\u0000\u0000:9\u0001\u0000\u0000\u0000:;\u0001"+
+		"\u0000\u0000\u0000;\u000b\u0001\u0000\u0000\u0000<A\u0005\u0001\u0000"+
+		"\u0000=>\u0005\u0001\u0000\u0000>?\u0005\n\u0000\u0000?A\u0005\u0001\u0000"+
+		"\u0000@<\u0001\u0000\u0000\u0000@=\u0001\u0000\u0000\u0000A\r\u0001\u0000"+
+		"\u0000\u0000BD\u0007\u0001\u0000\u0000CB\u0001\u0000\u0000\u0000DE\u0001"+
+		"\u0000\u0000\u0000EC\u0001\u0000\u0000\u0000EF\u0001\u0000\u0000\u0000"+
+		"F\u000f\u0001\u0000\u0000\u0000\t\u0013\u001d\'-04:@E";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

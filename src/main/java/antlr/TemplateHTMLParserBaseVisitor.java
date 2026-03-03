@@ -1,4 +1,4 @@
-// Generated from TemplateHTMLParser.g4 by ANTLR 4.13.1
+// Generated from src/main/antlr4/TemplateHTMLParser.g4 by ANTLR 4.13.1
 package antlr;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -18,42 +18,14 @@ public class TemplateHTMLParserBaseVisitor<T> extends AbstractParseTreeVisitor<T
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDocumentNode(TemplateHTMLParser.DocumentNodeContext ctx) { return visitChildren(ctx); }
+	@Override public T visitHtmlDocument(TemplateHTMLParser.HtmlDocumentContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDoctypeNode(TemplateHTMLParser.DoctypeNodeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitJinjaPrintNode(TemplateHTMLParser.JinjaPrintNodeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitJinjaCodeNode(TemplateHTMLParser.JinjaCodeNodeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitHtmlTagNode(TemplateHTMLParser.HtmlTagNodeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitTextNode(TemplateHTMLParser.TextNodeContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNode(TemplateHTMLParser.NodeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -67,26 +39,26 @@ public class TemplateHTMLParserBaseVisitor<T> extends AbstractParseTreeVisitor<T
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJinjaPrint(TemplateHTMLParser.JinjaPrintContext ctx) { return visitChildren(ctx); }
+	@Override public T visitElement(TemplateHTMLParser.ElementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitJinjaCode(TemplateHTMLParser.JinjaCodeContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNormalElement(TemplateHTMLParser.NormalElementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHtmlTag(TemplateHTMLParser.HtmlTagContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVoidElement(TemplateHTMLParser.VoidElementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHtmlText(TemplateHTMLParser.HtmlTextContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAttribute(TemplateHTMLParser.AttributeContext ctx) { return visitChildren(ctx); }
 }

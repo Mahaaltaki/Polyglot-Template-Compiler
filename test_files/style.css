@@ -1,63 +1,68 @@
-.container { width: 100%; }
-.card { background: #fff; }
-.btn { color: red; }
-#main-header { font-size: 20px; }
-
+.container {
+    width: 100%;
+}
+.card {
+    background: #fff;
+}
+.btn {
+    color: red;
+}
+#main-header {
+    font-size: 20px;
+}
 body {
-  margin: 20px;
-  font-family: Arial;
-  background: #f7f7f7;
+    margin: 20px;
+    font-family: Arial;
+    background: #f7f7f7;
 }
 .page {
-  width: 80%;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+    width: 80%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .header-title {
-  margin: 0;
-  padding: 10px;
+    margin: 0;
+    padding: 10px;
 }
 .product-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 .item {
-  background: #ffffff;
-  margin: 12px;
-  padding: 12px;
-  border-radius: 5px;
-}
-.item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    background: #ffffff;
+    margin: 12px;
+    padding: 12px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .product-info h2 {
-  margin: 0;
-  font-size: 20px;
+    margin: 0;
+    font-size: 20px;
 }
 .product-info span {
-  display: block;
-  color: #666666;
+    display: block;
+    color: #666666;
 }
 .product-actions {
-  text-align: right;
+    text-align: right;
 }
 a, button {
-  background: blue;
-  color: white;
-  padding: 10px;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    background: blue;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .add-btn {
-  display: inline-block;
-  margin: 12px;
+    display: inline-block;
+    margin: 12px;
 }
 .delete-btn {
-  background: red;
+    background: red;
 }

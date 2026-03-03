@@ -1,72 +1,47 @@
 package visitor;
 
-import symboltable.SymbolTable;
-import antlr.TemplateHTMLParserBaseVisitor;
 import antlr.TemplateHTMLParser;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import antlr.TemplateHTMLParserBaseVisitor;
+import symboltable.SymbolTable;
 
 public class HtmlSymbolTableVisitor extends TemplateHTMLParserBaseVisitor<Void> {
-    private SymbolTable symbolTable;
+    private SymbolTable table;
 
     public HtmlSymbolTableVisitor() {
-        this.symbolTable = new SymbolTable("HTML TEMPLATE");
+        this.table = new SymbolTable("HTML TEMPLATE");
     }
 
     public SymbolTable getSymbolTable() {
-        return symbolTable;
+        return table;
     }
 
     @Override
-    public Void visitDoctypeNode(TemplateHTMLParser.DoctypeNodeContext ctx) {
-        symbolTable.define("DOCTYPE", "META", "Template");
-        return null;
-    }
+    public Void visitNormalElement(TemplateHTMLParser.NormalElementContext ctx) {
+        String tagName = ctx.tagName.getText();
+        table.define(tagName, "HTML TAG", "Template");
 
-    @Override
-    public Void visitJinjaPrintNode(TemplateHTMLParser.JinjaPrintNodeContext ctx) {
-        String rawText = ctx.getText(); 
-        
-        String content = rawText.replace("{{", "").replace("}}", "").trim();
-
-        if (content.contains("url_for")) {
-            Pattern p = Pattern.compile("url_for\\(['\"](.*?)['\"]\\)");
-            Matcher m = p.matcher(content);
-            if (m.find()) {
-                symbolTable.define(m.group(1), "URL_ENDPOINT", "Template");
-            }
-            return null;
-        }
-
-        String varName = content;
-        if (varName.contains(".")) {
-            varName = varName.split("\\.")[0];
-        }
-
-        if (!varName.isEmpty()) {
-            symbolTable.define(varName, "JINJA VAR", "Template");
-        }
-        return null;
-    }
-
-    @Override
-    public Void visitJinjaCodeNode(TemplateHTMLParser.JinjaCodeNodeContext ctx) {
-        String text = ctx.getText(); 
-        
-        String content = text.replace("{%", "").replace("%}", "").trim();
-        
-        if (content.startsWith("for ")) {
-            String[] parts = content.split("\\s+");
-            
-            if (parts.length >= 4 && parts[2].equals("in")) {
-                String loopVar = parts[1]; 
-                String listVar = parts[3]; 
-                
-                symbolTable.define(loopVar, "LOOP VAR", "Local Scope");
-                symbolTable.define(listVar, "ITERABLE", "Global Scope");
+        if (ctx.attribute() != null) {
+            for (TemplateHTMLParser.AttributeContext attrCtx : ctx.attribute()) {
+                String attrName = attrCtx.ID().getText();
+                table.define(attrName, "ATTRIBUTE", tagName);
             }
         }
-        return null;
+
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Void visitVoidElement(TemplateHTMLParser.VoidElementContext ctx) {
+        String tagName = ctx.tagName.getText();
+        table.define(tagName, "HTML VOID TAG", "Template");
+
+        if (ctx.attribute() != null) {
+            for (TemplateHTMLParser.AttributeContext attrCtx : ctx.attribute()) {
+                String attrName = attrCtx.ID().getText();
+                table.define(attrName, "ATTRIBUTE", tagName);
+            }
+        }
+
+        return visitChildren(ctx);
     }
 }

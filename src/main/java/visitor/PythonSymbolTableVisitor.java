@@ -1,41 +1,24 @@
 package visitor;
-
 import symboltable.SymbolTable;
 import antlr.*;
+import antlr.FlaskPythonParserBaseVisitor;
 
 public class PythonSymbolTableVisitor extends FlaskPythonParserBaseVisitor<Void> {
-    private SymbolTable symbolTable;
+    private SymbolTable table = new SymbolTable("PYTHON");
+    public SymbolTable getSymbolTable() { return table; }
 
-    public PythonSymbolTableVisitor() {
-        this.symbolTable = new SymbolTable("PYTHON");
-    }
-
-    public SymbolTable getSymbolTable() {
-        return symbolTable;
-    }
-
-    @Override
-    public Void visitAssignStat(FlaskPythonParser.AssignStatContext ctx) {
-        String varName = ctx.ID().getText();
-        String type = "Unknown"; 
-        
-        if (ctx.expression() instanceof FlaskPythonParser.ListExprContext) type = "LIST";
-        else if (ctx.expression() instanceof FlaskPythonParser.DictExprContext) type = "DICTIONARY";
-        else if (ctx.expression() instanceof FlaskPythonParser.StringExprContext) type = "STRING";
-        else if (ctx.expression() instanceof FlaskPythonParser.NumberExprContext) type = "INTEGER";
-        else if (ctx.expression() instanceof FlaskPythonParser.FunctionCallExprContext) type = "FUNC_CALL";
-
-        symbolTable.define(varName, type, "Global");
+    @Override public Void visitAssignmentRule(FlaskPythonParser.AssignmentRuleContext ctx) {
+        String varName = ctx.assignStmt().ID().getText();
+        table.define(varName, "VARIABLE", "Global");
         return null;
     }
-    
-    @Override
-    public Void visitImportStat(FlaskPythonParser.ImportStatContext ctx) {
-        if (ctx.idList() != null) {
-            for(var id : ctx.idList().ID()) {
-                 symbolTable.define(id.getText(), "MODULE_IMPORT", "Global");
-            }
-        }
+    @Override public Void visitImportRule(FlaskPythonParser.ImportRuleContext ctx) {
+        for(var id : ctx.importStmt().idList().ID()) 
+            table.define(id.getText(), "MODULE_IMPORT", "Global");
+        return null;
+    }
+    @Override public Void visitFunctionRule(FlaskPythonParser.FunctionRuleContext ctx) {
+        table.define(ctx.funcDef().ID().getText(), "FUNCTION", "Global");
         return null;
     }
 }

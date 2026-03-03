@@ -1,36 +1,15 @@
 package visitor;
-import antlr.*;
 import symboltable.SymbolTable;
-import antlr.SimpleCSSParserBaseVisitor;
-import antlr.SimpleCSSParser;
+import antlr.*;
+import antlr.SimpleCSSBaseVisitor;
 
-public class CssSymbolTableVisitor extends SimpleCSSParserBaseVisitor<Void> {
-    private SymbolTable symbolTable;
+public class CssSymbolTableVisitor extends SimpleCSSBaseVisitor<Void> {
+    private SymbolTable table = new SymbolTable("CSS");
+    public SymbolTable getSymbolTable() { return table; }
 
-    public CssSymbolTableVisitor() {
-        this.symbolTable = new SymbolTable("CSS");
-    }
-
-    public SymbolTable getSymbolTable() {
-        return symbolTable;
-    }
-
-    @Override
-    public Void visitClassSelector(SimpleCSSParser.ClassSelectorContext ctx) {
-        String name = ctx.ID(0).getText();
-        symbolTable.define("." + name, "CSS CLASS", "Global");
+    @Override public Void visitRuleSetRule(SimpleCSSParser.RuleSetRuleContext ctx) {
+        String selector = ctx.selectors().getText();
+        table.define(selector, "SELECTOR", "Stylesheet");
         return null;
-    }
-
-    @Override
-    public Void visitIdSelector(SimpleCSSParser.IdSelectorContext ctx) {
-        String name = ctx.ID(0).getText();
-        symbolTable.define("#" + name, "CSS ID", "Global");
-        return null;
-    }
-
-    @Override
-    public Void visitSelectorListNode(SimpleCSSParser.SelectorListNodeContext ctx) {
-        return visitChildren(ctx);
     }
 }

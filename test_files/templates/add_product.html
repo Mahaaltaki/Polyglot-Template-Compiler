@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add Product</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
     <link rel="stylesheet" href="../style.css">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 </head>
 <body>
-    <h2>Add New Product</h2>
-    
-    <form action="{{ url_for('add_product') }}" method="POST" class="product-form">
-        <div class="form-group">
-            <label>Product Name:</label>
-            <input type="text" name="product_name" required>
-        </div>
+    <div class="container">
+        <header id="main-header">
+            <h1 class="header-title">Add New Product</h1>
+        </header>
         
-        <div class="form-group">
-            <label>Product Price ($):</label>
-            <input type="number" name="product_price" min="0" required>
-        </div>
-        
-        <button type="submit" class="save-btn">Save Product</button>
-    </form>
-
-    <br>
-    <a href="{{ url_for('home') }}" class="back-btn">← Back to Home</a>
+        <main class="page">
+            <form action="/add" method="POST">
+                <div class="form-group">
+                    <label>Product Name:</label>
+                    <input type="text" name="name" required="true">
+                </div>
+                <div class="form-group">
+                    <label>Price:</label>
+                    <input type="number" name="price" required="true">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="add-btn">Save Product</button>
+                    <a href="/" class="btn">Cancel</a>
+                </div>
+            </form>
+        </main>
+    </div>
 </body>
 </html>
