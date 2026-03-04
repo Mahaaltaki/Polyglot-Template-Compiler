@@ -1,13 +1,11 @@
 lexer grammar TemplateHTMLLexer;
 
-// --- Default Mode (Outside Tags) ---
 TAG_START_OPEN  : '<'           -> pushMode(TAG_MODE);
 TAG_END_OPEN    : '</'          -> pushMode(TAG_MODE);
 HTML_COMMENT    : '<!--' .*? '-->' -> skip;
 TEXT            : ~[<]+;
 WS              : [ \t\r\n]+    -> skip;
 
-// --- Tag Mode (Inside Tags) ---
 mode TAG_MODE;
 
 TAG_CLOSE       : '>'           -> popMode;

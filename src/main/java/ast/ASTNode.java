@@ -25,7 +25,6 @@ public abstract class ASTNode {
         return sb.toString();
     }
 
-    // --- Inner Classes ---
     public static class ProgramNode extends ASTNode { public ProgramNode() { super(0, "Program"); } }
     public static class ImportNode extends ASTNode { public ImportNode(int l, String f) { super(l, "Import From: " + f); } }
     public static class FuncDefNode extends ASTNode { public FuncDefNode(int l, String n) { super(l, "Function: " + n); } }

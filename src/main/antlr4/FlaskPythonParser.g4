@@ -21,19 +21,14 @@ assignStmt : ID ASSIGN expression;
 returnStmt : RETURN expression?;
 exprStmt   : expression;
 
-// Function Definition
 funcDef : DEF ID LPAREN paramList? RPAREN COLON block;
 
-// Class Definition
 classDef : CLASS ID (LPAREN ID RPAREN)? COLON block;
 
-// If Statement
 ifStmt : IF expression COLON block (ELIF expression COLON block)* (ELSE COLON block)?;
 
-// Decorator
 decoratorStmt : AT dottedName (LPAREN argList? RPAREN)? NEWLINE (funcDef | decoratorStmt);
 
-// Block - contains statements that can be inside functions
 block : NEWLINE+ (returnStmt | globalStmt | assignStmt | exprStmt | NEWLINE)*;
 
 idList : ID (COMMA ID)*;
@@ -54,7 +49,6 @@ expression
     | ID                                         # VarLit
     ;
 
-// Arguments (Supports keyword args: name="Laptop")
 argList : argument (COMMA NEWLINE* argument)*;
 argument : expression | ID ASSIGN expression;
 

@@ -4,9 +4,7 @@ options {
     language = Java;
 }
 
-// ----------------------------------------
 // Parser Rules
-// ----------------------------------------
 
 htmlDocument
     :   doctype? htmlContent* EOF
@@ -44,9 +42,7 @@ text
     :   TEXT
     ;
 
-// ----------------------------------------
 // Lexer Rules
-// ----------------------------------------
 
 DOCTYPE         : '<!DOCTYPE' ~[>]* '>';
 OPEN_TAG        : '<';

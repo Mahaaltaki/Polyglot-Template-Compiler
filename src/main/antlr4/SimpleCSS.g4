@@ -6,7 +6,6 @@ ruleSet : selectors LBRACE declaration* RBRACE # RuleSetRule;
 
 selectors : selector (COMMA selector)*;
 
-// Selector can be multiple parts (e.g. ".product-info h2")
 selector : selectorElement+; 
 
 selectorElement : (DOT | HASH)? ID | STAR;
@@ -14,7 +13,7 @@ selectorElement : (DOT | HASH)? ID | STAR;
 declaration : propName COLON propValue SEMI? # DeclarationRule;
 
 propName : ID | ID MINUS ID;
-propValue : (ID | HASH | NUMBER | DOT | MINUS | PERCENT)+; // Allow flexible values
+propValue : (ID | HASH | NUMBER | DOT | MINUS | PERCENT)+;
 
 // Lexer
 ID : [a-zA-Z][a-zA-Z0-9_-]*;
