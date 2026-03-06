@@ -52,4 +52,40 @@ public interface TemplateHTMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAttribute(TemplateHTMLParser.AttributeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TemplateHTMLParser#jinjaVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaVariable(TemplateHTMLParser.JinjaVariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TemplateHTMLParser#jinjaVarExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaVarExpression(TemplateHTMLParser.JinjaVarExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TemplateHTMLParser#jinjaVarAccess}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaVarAccess(TemplateHTMLParser.JinjaVarAccessContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TemplateHTMLParser#jinjaBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaBlock(TemplateHTMLParser.JinjaBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TemplateHTMLParser#jinjaForBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaForBlock(TemplateHTMLParser.JinjaForBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TemplateHTMLParser#jinjaIfBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJinjaIfBlock(TemplateHTMLParser.JinjaIfBlockContext ctx);
 }

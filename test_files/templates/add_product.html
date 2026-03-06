@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Product</title>
+    <title>{{ form_title }}</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div class="container">
         <header id="main-header">
-            <h1 class="header-title">Add New Product</h1>
+            <h1 class="header-title">{{ header_title }}</h1>
         </header>
         
         <main class="page">
             <form action="/add" method="POST">
-                <div class="form-group">
-                    <label>Product Name:</label>
-                    <input type="text" name="name" required="true">
-                </div>
-                <div class="form-group">
-                    <label>Price:</label>
-                    <input type="number" name="price" required="true">
-                </div>
+                {% for field in form_fields %}
+                    <div class="form-group">
+                        <label>{{ field.label }}:</label>
+                        <input type="{{ field.type }}" name="{{ field.name }}" required="{{ field.required }}">
+                    </div>
+                {% endfor %}
+                
                 <div class="form-actions">
-                    <button type="submit" class="add-btn">Save Product</button>
-                    <a href="/" class="btn">Cancel</a>
+                    <button type="submit" class="add-btn">{{ submit_text }}</button>
+                    <a href="/" class="btn">{{ cancel_text }}</a>
                 </div>
             </form>
         </main>
